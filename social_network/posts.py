@@ -25,8 +25,9 @@ class TextPost(Post):  # Inherit properly
 class PicturePost(Post):  # Inherit properly
     def __init__(self, text, image_url, timestamp=None):
         self.image_url = image_url
-        super().__init__(text, timestamp)
-        
+        super(PicturePost, self).__init__(text, timestamp)
+        #super().__init__(text, timestamp) for py3+
+
 
     def __str__(self):
         return '@{} {}: "{}"\n\t{}\n\t{}'.format(self.user.first_name, self.user.last_name, self.text, self.image_url, self.timestamp.strftime("%A, %b %d, %Y"))
@@ -36,7 +37,8 @@ class CheckInPost(Post):  # Inherit properly
     def __init__(self, text, latitude, longitude, timestamp=None):
         self.latitude = latitude
         self.longitude = longitude 
-        super().__init__(text, timestamp)
+        super(CheckInPost, self).__init__(text, timestamp)
+        #super().__init__(text, timestamp) for py3+
 
     def __str__(self):
         return '@{} Checked In: "{}"\n\t{}, {}\n\t{}'.format(self.user.first_name, self.text, self.latitude, self.longitude, self.timestamp.strftime("%A, %b %d, %Y"))
