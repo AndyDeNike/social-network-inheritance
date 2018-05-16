@@ -16,8 +16,9 @@ class TextPost(Post):  # Inherit properly
     #why do i need to reinitialize when TextPost inherits
     #the objects attributes from Post? 
     def __init__(self, text, timestamp=None):
-        super().__init__(text, timestamp)
-       
+        super(TextPost, self).__init__(text, timestamp)
+        #super().__init__(text, timestamp) for py3+
+        
     def __str__(self):
         return '@{} {}: "{}"\n\t{}'.format(self.user.first_name, self.user.last_name, self.text, self.timestamp.strftime("%A, %b %d, %Y"))
 
